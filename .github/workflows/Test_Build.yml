@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir tempDir
           cd tempDir
-          git clone https://github.com/Hicores/QTool
+          git clone https://github.com/6DDUU6/QTool
           cd QTool
           export CommitNumber=`git rev-list --count main`
           echo $CommitNumber
@@ -37,3 +37,9 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.SIGN_PASS }}
           KEY_ALIAS: ${{ secrets.SIGN_ALIAS }}
           KEY_PASSWORD: ${{ secrets.ALIA_PASS }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        if: ${{ !github.event.pull_request }}
+        with:
+          path: 'QTool/build/outputs/apk/release/*.*'
+          name: QTool_CIBuild
