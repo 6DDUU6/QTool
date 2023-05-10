@@ -40,6 +40,7 @@ public class HostInfo {
     }
 
     public static boolean checkIsGrayQQ(){
+        return false;
         try {
             PackageManager pm = HookEnv.AppContext.getPackageManager();
             ApplicationInfo sAppInfo = pm.getApplicationInfo("com.tencent.mobileqq", PackageManager.GET_META_DATA);
